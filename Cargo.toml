@@ -1,0 +1,17 @@
+[package]
+name = "squirrel"
+version = "0.1.0"
+authors = ["Valerii Tsyvakin <devcen13@gmail.com>"]
+description = "Bindings to Squirrel 3"
+readme = "README.md"
+keywords = [
+  "squirrel", "squirrel3", "rust-squirrel", "bindings"
+]
+license = "MIT"
+links = "squirrel"
+
+[dependencies]
+libc = "*"
+
+[features]
+default = []
