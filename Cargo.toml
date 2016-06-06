@@ -8,7 +8,7 @@ keywords = [
   "squirrel", "squirrel3", "rust-squirrel", "bindings"
 ]
 license = "MIT"
-links = "squirrel"
+links = "squirrel_static"
 build = "build.rs"
 
 [dependencies]
