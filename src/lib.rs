@@ -19,7 +19,7 @@ pub type SQInteger = ::libc::int64_t;
 pub type SQUnsignedInteger = ::libc::uint64_t;
 
 pub type SQInt32 = ::libc::int32_t;
-pub type SQUnsignedInteger32 = ::std::os::raw::c_uint;
+pub type SQUnsignedInteger32 = ::libc::uint32_t;
 
 pub type SQHash = SQUnsignedInteger;
 
@@ -29,9 +29,14 @@ pub type SQFloat = ::libc::c_double;
 pub type SQFloat = ::libc::c_float;
 
 pub type SQRawObjectVal = ::libc::int64_t;
-pub type SQUserPointer = *mut ::std::os::raw::c_void;
+pub type SQUserPointer = *mut ::libc::c_void;
 pub type SQBool = SQUnsignedInteger;
-pub type SQChar = ::std::os::raw::c_char;
+
+#[cfg(not(feature = "use_unicode"))]
+pub type SQChar = ::libc::c_char;
+#[cfg(feature = "use_unicode")]
+pub type SQChar = ::libc::uint16_t;
+
 pub type SQRESULT = SQInteger;
 
 #[repr(C)]
@@ -337,10 +342,10 @@ extern "C" {
     pub fn sq_readclosure(vm: HSQUIRRELVM, readf: SQREADFUNC, up: SQUserPointer) -> SQRESULT;
 
     /*mem allocation*/
-    pub fn sq_malloc(size: SQUnsignedInteger) -> *mut ::std::os::raw::c_void;
-    pub fn sq_realloc(p: *mut ::std::os::raw::c_void, oldsize: SQUnsignedInteger, 
-                      newsize: SQUnsignedInteger) -> *mut ::std::os::raw::c_void;
-    pub fn sq_free(p: *mut ::std::os::raw::c_void, size: SQUnsignedInteger);
+    pub fn sq_malloc(size: SQUnsignedInteger) -> *mut ::libc::c_void;
+    pub fn sq_realloc(p: *mut ::libc::c_void, oldsize: SQUnsignedInteger, 
+                      newsize: SQUnsignedInteger) -> *mut ::libc::c_void;
+    pub fn sq_free(p: *mut ::libc::c_void, size: SQUnsignedInteger);
 
     /*debug*/
     pub fn sq_stackinfos(v: HSQUIRRELVM, level: SQInteger, si: *mut SQStackInfos) -> SQRESULT;

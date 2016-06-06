@@ -19,3 +19,5 @@ cmake = "0.1"
 
 [features]
 default = []
+use_double = []
+use_unicode = []

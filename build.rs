@@ -5,6 +5,9 @@ fn add_squirrel_defines(cmake_cfg: &mut cmake::Config) {
     if cfg!(feature = "use_double") {
         cmake_cfg.define("SQUSEDOUBLE", "");
     }
+    if cfg!(feature = "use_unicode") {
+        cmake_cfg.define("SQUNICODE", "");
+    }
 }
 
 fn export_squirrel(path: std::path::PathBuf) {
