@@ -1,5 +1,6 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
+#![allow(improper_ctypes)]
 #![allow(dead_code)]
 
 extern crate libc;
@@ -33,21 +34,9 @@ pub type SQBool = SQUnsignedInteger;
 pub type SQChar = ::std::os::raw::c_char;
 pub type SQRESULT = SQInteger;
 
+#[repr(C)]
 pub struct SQVM;
-pub struct SQTable;
-pub struct SQArray;
-pub struct SQString;
-pub struct SQClosure;
-pub struct SQGenerator;
-pub struct SQNativeClosure;
-pub struct SQUserData;
-pub struct SQFunctionProto;
-pub struct SQRefCounted;
-pub struct SQClass;
-pub struct SQInstance;
-pub struct SQDelegable;
-pub struct SQOuter;
-pub struct SQWeakRef;
+pub type HSQUIRRELVM = *mut SQVM;
 
 
 const SQOBJECT_REF_COUNTED: u32 = 0x08000000;
@@ -142,7 +131,6 @@ impl Default for SQStackInfos {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 
-pub type HSQUIRRELVM =     *mut SQVM;
 pub type HSQOBJECT =       SQObject;
 pub type HSQMEMBERHANDLE = SQMemberHandle;
 pub type SQFUNCTION = extern "C" fn(v: HSQUIRRELVM) -> SQInteger;
