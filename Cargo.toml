@@ -10,6 +10,7 @@ keywords = [
 license = "MIT"
 links = "squirrel_static"
 build = "build.rs"
+repository = "https://github.com/devcen13/squirrel"
 
 [dependencies]
 libc = "*"
