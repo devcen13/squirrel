@@ -13,7 +13,7 @@ build = "build.rs"
 repository = "https://github.com/devcen13/squirrel"
 
 [dependencies]
-libc = "*"
+libc = "0.2.11"
 
 [build-dependencies]
 cmake = "0.1"
