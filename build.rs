@@ -13,6 +13,7 @@ fn add_squirrel_defines(cmake_cfg: &mut cmake::Config) {
 fn export_squirrel(path: std::path::PathBuf) {
     println!("cargo:rustc-link-search=native={}", path.display());
     println!("cargo:rustc-link-lib=static=squirrel_static");
+    println!("cargo:rustc-flags=-l dylib=stdc++");
 }
 
 
