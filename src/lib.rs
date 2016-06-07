@@ -138,28 +138,28 @@ impl Default for SQStackInfos {
 
 pub type HSQOBJECT =       SQObject;
 pub type HSQMEMBERHANDLE = SQMemberHandle;
-pub type SQFUNCTION = extern "C" fn(v: HSQUIRRELVM) -> SQInteger;
-pub type SQRELEASEHOOK = extern "C" fn(ptr: SQUserPointer, size: SQInteger) -> SQInteger;
-pub type SQCOMPILERERROR = unsafe extern "C" fn(v:      HSQUIRRELVM,
+pub type SQFUNCTION = Option<extern "C" fn(v: HSQUIRRELVM) -> SQInteger>;
+pub type SQRELEASEHOOK = Option<extern "C" fn(ptr: SQUserPointer, size: SQInteger) -> SQInteger>;
+pub type SQCOMPILERERROR = Option<unsafe extern "C" fn(v:      HSQUIRRELVM,
                                                 desc:   *const SQChar,
                                                 source: *const SQChar,
                                                 line:   SQInteger,
-                                                column: SQInteger);
-pub type SQPRINTFUNCTION = unsafe extern "C" fn(v:   HSQUIRRELVM,
+                                                column: SQInteger)>;
+pub type SQPRINTFUNCTION = Option<unsafe extern "C" fn(v:   HSQUIRRELVM,
                                                 fmt: *const SQChar, 
-                                                ...);
-pub type SQDEBUGHOOK = unsafe extern "C" fn(v:          HSQUIRRELVM,
+                                                ...)>;
+pub type SQDEBUGHOOK = Option<unsafe extern "C" fn(v:          HSQUIRRELVM,
                                             _type:      SQInteger,
                                             sourcename: *const SQChar,
                                             line:       SQInteger,
-                                            funcname:   *const SQChar);
-pub type SQWRITEFUNC = extern "C" fn(arg1: SQUserPointer,
+                                            funcname:   *const SQChar)>;
+pub type SQWRITEFUNC = Option<extern "C" fn(arg1: SQUserPointer,
                                      arg2: SQUserPointer, 
-                                     arg3: SQInteger) -> SQInteger;
-pub type SQREADFUNC = extern "C" fn(arg1: SQUserPointer,
+                                     arg3: SQInteger) -> SQInteger>;
+pub type SQREADFUNC = Option<extern "C" fn(arg1: SQUserPointer,
                                     arg2: SQUserPointer, 
-                                    arg3: SQInteger) -> SQInteger;
-pub type SQLEXREADFUNC = extern "C" fn(arg1: SQUserPointer) -> SQInteger;
+                                    arg3: SQInteger) -> SQInteger>;
+pub type SQLEXREADFUNC = Option<extern "C" fn(arg1: SQUserPointer) -> SQInteger>;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
